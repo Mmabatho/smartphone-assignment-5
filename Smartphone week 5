@@ -1,0 +1,51 @@
+# Defining a base Smartphone class
+class Smartphone:
+    # Constructor method with double underscores (fixed from 'init' to '__init__')
+    def __init__(self, model):
+        # Initialize the model attribute with the provided value
+        self.model = model
+    
+    # Method to display the operating system of the smartphone
+    def OS(self):
+        # Default OS method that will be overridden by child classes
+        print(f"{self.model} uses a generic operating system")
+
+# Creating an instance of the Smartphone class
+# Changed from "model" to "Generic Phone" for clarity
+Smartphone1 = Smartphone("Generic Phone")
+# Printing the model attribute of the Smartphone1 object
+print(Smartphone1.model)
+
+# Demonstrating polymorphism with child classes
+# iPhone class that inherits from Smartphone
+class iPhone(Smartphone):
+    # Override the OS method for iPhone-specific behavior
+    def OS(self):
+        # iPhone uses iOS operating system
+        print(f"{self.model} uses iOS")  # Fixed "IOS" to "iOS" (correct capitalization)
+
+# Samsung class that inherits from Smartphone
+class Samsung(Smartphone):
+    # Override the OS method for Samsung-specific behavior
+    def OS(self):
+        # Samsung uses Android operating system
+        print(f"{self.model} uses Android")
+
+# Function that demonstrates polymorphism by accepting any object with an OS method
+def Smartphone_OS(smartphone):
+    # Calls the OS method on the provided smartphone object
+    # This works regardless of the specific type of smartphone
+    smartphone.OS()
+
+# Creating an instance of the iPhone class
+iPhone2 = iPhone("iPhone 14 Pro Max")  # Updated to a more specific model name
+# Creating an instance of the Samsung class
+Samsung2 = Samsung("Galaxy S23 Ultra")  # Updated to a more recent model
+
+# Demonstrating polymorphism by calling the same function with different objects
+Smartphone_OS(iPhone2)  # This will call iPhone's OS method
+Smartphone_OS(Samsung2)  # This will call Samsung's OS method
+
+# Adding a call to the base class method to show the difference
+print("\nBase class method:")
+Smartphone_OS(Smartphone1)  # This will call the base Smartphone's OS method
